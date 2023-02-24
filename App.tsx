@@ -9,7 +9,7 @@ import NavList from "./components/tabnavigation/NavList";
 export default function App() {
   return (
     <View style={styles.container}>
-      <Main />
+      <RootNavigator />
     </View>
   );
 }
