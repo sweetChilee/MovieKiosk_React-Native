@@ -4,6 +4,7 @@ import {
   ImageBackground,
   Text,
   View,
+  Animated,
   FlatList,
   TouchableOpacity,
   Modal,
@@ -207,7 +208,7 @@ export default function MovieLists() {
             <RefreshControl
               refreshing={refreshing}
               onRefresh={onRefresh}
-              colors={["white"]}
+              colors={["blue"]}
             />
           }
         />
@@ -227,8 +228,7 @@ const styles = StyleSheet.create({
   main_list: {
     flex: 1,
     backgroundColor: "rgb(44, 44, 44)",
-    flexDirection: "row",
-    justifyContent: "center",
+    justifyContent: "space-evenly",
     alignItems: "center",
   },
   movie_list: {
@@ -236,6 +236,7 @@ const styles = StyleSheet.create({
     backgroundColor: "rgb(66, 66, 66)",
     width: SCREEN_WIDTH / 2.15,
     margin: 6,
+    marginVertical: 20,
     padding: 0,
     justifyContent: "center",
     shadowColor: "black",

@@ -5,8 +5,19 @@ import MovieLists from "./components/list/MovieLists";
 import Main from "./components/main/Main";
 import RootNavigator from "./components/navigation";
 import NavList from "./components/tabnavigation/NavList";
+import { useState } from "react";
 
 export default function App() {
+  const fadeIn = () => {
+    const [count, setCount] = useState<number>(0);
+
+    let invalidId;
+
+    const startCounter = () => {
+      invalidId = setInterval(() => setCount((count) => count + 2000), 2000);
+    };
+    console.log(startCounter());
+  };
   return (
     <View style={styles.container}>
       <RootNavigator />

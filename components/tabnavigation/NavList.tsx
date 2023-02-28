@@ -11,6 +11,8 @@ import MovieList from "../list/MovieList";
 import MovieLists from "../list/MovieLists";
 import Recommand from "./Recommand";
 import Food from "./Food";
+import Map from "./Map";
+import Info from "./Info";
 
 function MovieListMain() {
   return (
@@ -23,15 +25,15 @@ function MovieListMain() {
 function MovieRecommend() {
   return (
     <>
-      <Recommand />
+      <Map />
     </>
   );
 }
 function TheaterInfo() {
   return (
-    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-      <Text>영화관 정보</Text>
-    </View>
+    <>
+      <Info />
+    </>
   );
 }
 function FoodMenu() {
