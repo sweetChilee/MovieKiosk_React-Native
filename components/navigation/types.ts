@@ -4,6 +4,7 @@ import type { RouteProp } from "@react-navigation/native";
 export type HomeStackNavigatorParamList = {
   Main: undefined;
   Navlist: undefined;
+  MovieDetails: undefined;
 };
 
 export type HomeScreenNavigationProp = NativeStackNavigationProp<

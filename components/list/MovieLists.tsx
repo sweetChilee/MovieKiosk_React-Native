@@ -7,76 +7,32 @@ import {
   Animated,
   FlatList,
   TouchableOpacity,
-  Modal,
-  Image,
   RefreshControl,
+  ActivityIndicator,
 } from "react-native";
-import {
-  responsiveHeight,
-  responsiveWidth,
-  responsiveFontSize,
-} from "react-native-responsive-dimensions";
-
-import { COLOR, SCREEN_HEIGHT, SCREEN_WIDTH } from "../../config/globalstyles";
+import { responsiveFontSize } from "react-native-responsive-dimensions";
+import { SCREEN_HEIGHT, SCREEN_WIDTH } from "../../config/globalstyles";
 
 // icon
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { Feather } from "@expo/vector-icons";
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect, useRef } from "react";
 
-type ItemData = {
-  rank: string;
-  movieNm: string;
-  openDt: string;
-  rnum: string;
-  picture: string;
+// navigation
+import { useNavigation } from "@react-navigation/native";
+import { HomeScreenNavigationProp } from "../navigation/types";
+
+//
+import { SharedElement } from "react-navigation-shared-element";
+import HelpComment from "../help/HelpComment";
+
+type Movie = {
+  rank: number;
+  title: string;
+  _id: string;
 };
 
-const DATA: ItemData[] = [
-  {
-    rnum: "1",
-    rank: "1",
-    movieNm: "앤트맨과 와스프: 퀀텀매니아",
-    openDt: "2023-02-15",
-    picture: "https://i.ibb.co/JsZBDpY/poster2.jpg",
-  },
-  {
-    rnum: "2",
-    rank: "2",
-    movieNm: "더 퍼스트 슬램덩크",
-    openDt: "2023-01-04",
-    picture: "https://i.ibb.co/JsZBDpY/poster2.jpg",
-  },
-  {
-    rnum: "3",
-    rank: "3",
-    movieNm: "영화 제목이 생각이 안 나",
-    openDt: "2023-02-21",
-    picture: "https://i.ibb.co/JsZBDpY/poster2.jpg",
-  },
-  {
-    rnum: "4",
-    rank: "4",
-    movieNm: "영화 제목이 생각이 안 나",
-    openDt: "2023-02-21",
-    picture: "https://i.ibb.co/JsZBDpY/poster2.jpg",
-  },
-  {
-    rnum: "5",
-    rank: "5",
-    movieNm: "영화 제목이 생각이 안 나",
-    openDt: "2023-02-21",
-    picture: "https://i.ibb.co/JsZBDpY/poster2.jpg",
-  },
-  {
-    rnum: "6",
-    rank: "6",
-    movieNm: "영화 제목이 생각이 안 나",
-    openDt: "2023-02-21",
-    picture: "https://i.ibb.co/JsZBDpY/poster2.jpg",
-  },
-];
-
+// 순위 별 트로피 표시 위한 딕셔너리
 const RANK: any = {
   first: <MaterialCommunityIcons name="trophy-award" size={30} color="gold" />,
   second: (
@@ -94,126 +50,184 @@ const RANK: any = {
 
 type ItemProps = {
   movieNm: string;
-  picture: string;
-  rank: string;
-  openDt: string;
+  // picture: string;
+  rank: string | number;
 };
 
-const Item = ({ movieNm, picture, rank, openDt }: ItemProps) => (
-  <View style={styles.movie_list}>
-    <Image
-      source={{ uri: picture }}
-      style={styles.movie_poster}
-      resizeMode="contain"
-    />
-    <View style={styles.movieEx}>
-      <Text style={{ fontSize: responsiveFontSize(2.3), color: "white" }}>
-        {movieNm}
-      </Text>
-      <Text style={{ fontSize: responsiveFontSize(1.5), color: "white" }}>
-        {(() => {
-          if (+rank === 1) return RANK.first;
-          else if (+rank === 2) return RANK.second;
-          else if (+rank === 3) return RANK.third;
-          else return RANK.remain;
-        })()}{" "}
-        예매율 순위 : {rank}
-      </Text>
-      <Text
-        style={{
-          fontSize: responsiveFontSize(1.5),
-          color: "white",
-          marginVertical: responsiveHeight(0.5),
-        }}
-      >
-        <MaterialCommunityIcons name="update" size={18} color="white" />{" "}
-        개봉일자 : {openDt}
-      </Text>
-      <Text style={{ fontSize: responsiveFontSize(1.5), color: "white" }}>
-        감독: 감석대 / 배우 : 이만식, 김명섭, 최기훈
-      </Text>
-      <Text style={styles.movieEx}>
-        정부는 연한을 정하여 계속비로서 국회의 의결을 얻어야 한다.
-      </Text>
-    </View>
-    <StatusBar style="light"></StatusBar>
-  </View>
-);
+// Movie
+function Item({ movieNm, rank }: ItemProps) {
+  const [line, setLine] = useState(1);
+  const [isActivated, setIsActivated] = useState(false);
+
+  const lineNumber = () => {
+    isActivated ? setLine(1) : setLine(Number.MAX_SAFE_INTEGER);
+    setIsActivated((prev) => !prev);
+  };
+  // 리스트 애니메이션
+  const fadeList = useRef(new Animated.Value(0)).current;
+  const transList = useRef(new Animated.Value(10)).current;
+  const listAnim = Animated.timing(fadeList, {
+    toValue: 1,
+    duration: 1500,
+    useNativeDriver: true,
+  });
+  const listAnim2 = Animated.timing(transList, {
+    toValue: 0,
+    duration: 2500,
+    useNativeDriver: true,
+  });
+  Animated.parallel([listAnim, listAnim2]).start();
+
+  return (
+    <Animated.View
+      style={{
+        ...styles.movie_list,
+        opacity: fadeList,
+        transform: [{ translateY: transList }],
+      }}
+    >
+      <View style={{ flex: 1 }}>
+        <ImageBackground
+          // source={{ uri : picture }}
+          source={require("../../img/slamdunk.jpeg")}
+          style={styles.movie_poster}
+          resizeMode="contain"
+        />
+      </View>
+      <View style={styles.movieEx}>
+        <Text
+          style={{ fontSize: responsiveFontSize(2.3), color: "white" }}
+          numberOfLines={line}
+          ellipsizeMode="tail"
+          onPress={() => {
+            lineNumber();
+          }}
+        >
+          {movieNm}
+        </Text>
+        <Text style={{ fontSize: responsiveFontSize(1.5), color: "white" }}>
+          {(() => {
+            if (+rank === 1) return RANK.first;
+            else if (+rank === 2) return RANK.second;
+            else if (+rank === 3) return RANK.third;
+            else return RANK.remain;
+          })()}{" "}
+          예매율 순위 : {rank}
+        </Text>
+        <Text style={{ fontSize: responsiveFontSize(1.5), color: "white" }}>
+          감독: 감석대 / 배우 : 이만식, 김명섭
+        </Text>
+        <Text style={styles.movieEx} numberOfLines={3} ellipsizeMode="tail">
+          전국 제패를 꿈꾸는 북산고 농구부 5인방의 꿈과 열정, 멈추지 않는 도전을
+          그린 영화
+        </Text>
+      </View>
+      <StatusBar style="light"></StatusBar>
+    </Animated.View>
+  );
+}
 
 export default function MovieLists() {
   const [imageMo, setImageMo] = useState(false);
   const [refreshing, setRefreshing] = useState(false);
 
+  // navigation
+  const navigation = useNavigation<HomeScreenNavigationProp>();
+
+  // 당겨서 새로 고침
   const onRefresh = useCallback(() => {
     setRefreshing(true);
     setTimeout(() => {
       setRefreshing(false);
-    }, 2000);
+    }, 1000);
+  }, []);
+
+  // data 불러오기
+  const [isLoading, setLoading] = useState(true);
+  const [data, setData] = useState<Movie[]>([]);
+  let url =
+    "https://port-0-sixman-movie-r8xoo2mlenkvdnc.sel3.cloudtype.app/rank";
+  const getMovies = async () => {
+    try {
+      const response = await fetch(url);
+      const Json = await response.json();
+      // Parse가 Json 형식의 값
+      const Parse = await Json.ranking;
+
+      setData(Parse);
+
+      // map으로 데이터 추출하기
+      // Parse.map((obj: any, key: number) => {
+      //   console.log(obj.title);
+      // });
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoading(false);
+    }
+  };
+  useEffect(() => {
+    getMovies();
   }, []);
 
   return (
-    <View style={styles.container}>
-      <View style={styles.banner}>
-        <ImageBackground
-          source={require("../../img/Zootopia-Banner.jpg")}
-          style={{ flex: 1 }}
-        />
-      </View>
-      <View style={styles.main_list}>
-        <FlatList
-          data={DATA}
-          renderItem={({ item }) => (
-            <TouchableOpacity
-              onPress={() => {
-                setImageMo(true);
-              }}
-              activeOpacity={0.8}
-            >
-              <Modal animationType="slide" visible={imageMo} transparent={true}>
-                <View
-                  style={{
-                    flex: 1,
-                    justifyContent: "center",
-                    alignItems: "center",
-                  }}
-                >
-                  <TouchableOpacity
-                    style={{
-                      backgroundColor: "white",
-                      width: "100%",
-                      height: "50%",
-                      justifyContent: "center",
-                      alignItems: "center",
-                    }}
-                    onPress={() => {
-                      setImageMo(false);
-                    }}
-                  >
-                    <Text style={{ fontSize: 40 }}>추후 공개 예정</Text>
-                  </TouchableOpacity>
-                </View>
-              </Modal>
-              <Item
-                movieNm={item.movieNm}
-                picture={item.picture}
-                rank={item.rank}
-                openDt={item.openDt}
-              />
-            </TouchableOpacity>
-          )}
-          keyExtractor={(item) => item.rnum}
-          style={{ flex: 1 }}
-          numColumns={2}
-          refreshControl={
-            <RefreshControl
-              refreshing={refreshing}
-              onRefresh={onRefresh}
-              colors={["blue"]}
+    <>
+      {isLoading ? (
+        <View
+          style={{
+            flex: 1,
+            backgroundColor: "rgb(66, 66, 66)",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <ActivityIndicator></ActivityIndicator>
+          <Text style={{ fontSize: 50, color: "white" }}>Loading...</Text>
+        </View>
+      ) : (
+        <View style={styles.container}>
+          <View style={styles.banner}>
+            <ImageBackground
+              source={require("../../img/Zootopia-Banner.jpg")}
+              style={{ flex: 1 }}
             />
-          }
-        />
-      </View>
-    </View>
+          </View>
+          <View style={styles.main_list}>
+            <HelpComment />
+            <FlatList
+              data={data}
+              renderItem={({ item }) => (
+                <TouchableOpacity
+                  onPress={() => {
+                    setImageMo(true);
+                    navigation.navigate("MovieDetails", { item });
+                  }}
+                  activeOpacity={0.8}
+                >
+                  <SharedElement id={"../../img/slamdunk.jpeg"}>
+                    <Item
+                      movieNm={item.title}
+                      // picture={item.picture}
+                      rank={item.rank}
+                    />
+                  </SharedElement>
+                </TouchableOpacity>
+              )}
+              keyExtractor={(item) => item._id}
+              style={{ flex: 1 }}
+              numColumns={2}
+              refreshControl={
+                <RefreshControl
+                  refreshing={refreshing}
+                  onRefresh={onRefresh}
+                  colors={["blue"]}
+                />
+              }
+            />
+          </View>
+        </View>
+      )}
+    </>
   );
 }
 
@@ -236,7 +250,7 @@ const styles = StyleSheet.create({
     backgroundColor: "rgb(66, 66, 66)",
     width: SCREEN_WIDTH / 2.15,
     margin: 6,
-    marginVertical: 20,
+    marginVertical: 15,
     padding: 0,
     justifyContent: "center",
     shadowColor: "black",
@@ -251,9 +265,8 @@ const styles = StyleSheet.create({
   },
   movie_poster: {
     flex: 1,
-    width: "100%",
     height: SCREEN_HEIGHT / 3,
-    marginTop: -8,
+    marginTop: -10,
   },
   movieEx: {
     flex: 1,

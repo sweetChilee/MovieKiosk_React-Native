@@ -1,9 +1,10 @@
 import { View, StyleSheet, Text } from "react-native";
 import { responsiveFontSize } from "react-native-responsive-dimensions";
 import { COLOR } from "../../config/globalstyles";
-
+import Map from "./Map";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { useState } from "react";
+import InfoHelpComment from "../help/InfoHelpComment";
 
 export default function Info() {
   const [theater, setTheater] = useState(false);
@@ -16,7 +17,9 @@ export default function Info() {
 
   return (
     <>
-      <View style={styles.TheaterPhoto}></View>
+      <View style={styles.TheaterPhoto}>
+        <Map />
+      </View>
       <View
         style={{
           flex: 0.007,
@@ -262,6 +265,7 @@ export default function Info() {
             </View>
           )}
         </View>
+        <InfoHelpComment />
       </View>
     </>
   );

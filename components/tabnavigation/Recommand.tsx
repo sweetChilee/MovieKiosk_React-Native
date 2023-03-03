@@ -1,7 +1,13 @@
-import { View, StyleSheet, ActivityIndicator, Text } from "react-native";
+import {
+  View,
+  StyleSheet,
+  ActivityIndicator,
+  Text,
+  Button,
+} from "react-native";
 import { useEffect, useState } from "react";
 import { COLOR } from "../../config/globalstyles";
-import BouncingPreloader from "react-native-bouncing-preloader";
+import AppLoader from "../loading/AppLoader";
 
 async function getItems() {
   await new Promise((resolve, reject) => setTimeout(resolve, 3000));
@@ -13,7 +19,7 @@ function AcitivityLoading() {
   useEffect(() => {
     const id = setInterval(() => {
       setColors((color) => (color === "white" ? COLOR : "white"));
-    }, 1000);
+    }, 3000);
     return () => clearInterval(id);
   }, []);
   return (
@@ -32,17 +38,26 @@ export default function Recommand() {
   useEffect(() => {
     getItems().then((items) => {
       setItem(items);
-      setLoading(true);
+      setLoading(false);
     });
-  }, []);
+  }, [loading]);
 
   return (
     <View style={styles.main}>
       {loading ? (
-        <AcitivityLoading />
+        <AppLoader />
       ) : (
-        <Text style={{ color: "white", fontSize: 40 }}>{item}</Text>
+        <>
+          <Text style={{ color: "white", fontSize: 40 }}>{item}</Text>
+          <Button
+            title="로딩 다시"
+            onPress={() => {
+              setLoading(true);
+            }}
+          ></Button>
+        </>
       )}
+      <Button title="goHome" onPress={() => {}} />
     </View>
   );
 }

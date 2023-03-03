@@ -7,12 +7,12 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
-import MovieList from "../list/MovieList";
 import MovieLists from "../list/MovieLists";
 import Recommand from "./Recommand";
-import Food from "./Food";
-import Map from "./Map";
+import Animation from "./Animations";
 import Info from "./Info";
+import { Overlay } from "react-native-elements";
+import { useState } from "react";
 
 function MovieListMain() {
   return (
@@ -25,7 +25,7 @@ function MovieListMain() {
 function MovieRecommend() {
   return (
     <>
-      <Map />
+      <Animation />
     </>
   );
 }
@@ -39,7 +39,7 @@ function TheaterInfo() {
 function FoodMenu() {
   return (
     <>
-      <Food />
+      <Recommand />
     </>
   );
 }

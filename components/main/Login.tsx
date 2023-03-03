@@ -4,11 +4,11 @@ import {
   View,
   TouchableOpacity,
   Dimensions,
-  Alert,
 } from "react-native";
 import LoginModal from "./LoginModal";
 import { useNavigation } from "@react-navigation/native";
 import { HomeScreenNavigationProp } from "../navigation/types";
+import { useState } from "react";
 
 const { height: SCREEN_HEIGHT } = Dimensions.get("window");
 
@@ -20,13 +20,14 @@ export default function Login() {
       <TouchableOpacity
         activeOpacity={0.5}
         style={styles.aBtn}
-        onPress={() => navigation.navigate("Navlist")}
+        onPress={() => {
+          navigation.navigate("Navlist");
+        }}
       >
-        <Text style={{ color: "white", fontSize: 20, fontWeight: "900" }}>
-          비회원으로 시작
+        <Text style={{ color: "black", fontSize: 35, fontWeight: "800" }}>
+          Start
         </Text>
       </TouchableOpacity>
-      <LoginModal />
     </View>
   );
 }
@@ -42,8 +43,10 @@ const styles: any = StyleSheet.create({
   aBtn: {
     flex: 1,
     backgroundColor: "rgb(168, 77, 191)",
+    borderWidth: 6,
+    borderColor: "black",
     borderRadius: 40,
-    height: SCREEN_HEIGHT / 15,
+    height: SCREEN_HEIGHT / 12,
     margin: 20,
     justifyContent: "center",
     alignItems: "center",
