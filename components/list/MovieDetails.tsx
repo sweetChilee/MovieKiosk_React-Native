@@ -7,7 +7,11 @@ import {
   Animated,
 } from "react-native";
 import { responsiveFontSize } from "react-native-responsive-dimensions";
-import { SCREEN_HEIGHT, SCREEN_WIDTH } from "../../config/globalstyles";
+import {
+  SCREEN_FONT,
+  SCREEN_HEIGHT,
+  SCREEN_WIDTH,
+} from "../../config/globalstyles";
 
 // icon
 import { MaterialCommunityIcons } from "@expo/vector-icons";
@@ -140,7 +144,7 @@ const MovieDetails = ({ route }: any) => {
       <View style={styles.movieEx}>
         <Animated.Text
           style={{
-            fontSize: responsiveFontSize(2.3),
+            fontSize: SCREEN_FONT,
             color: "white",
             opacity: fadeTitle,
             transform: [{ translateY: transTitle }],
@@ -150,7 +154,7 @@ const MovieDetails = ({ route }: any) => {
         </Animated.Text>
         <Animated.Text
           style={{
-            fontSize: responsiveFontSize(1.5),
+            fontSize: SCREEN_FONT - 5,
             color: "white",
             opacity: fadeRank,
             transform: [{ translateY: transRank }],
@@ -166,7 +170,7 @@ const MovieDetails = ({ route }: any) => {
         </Animated.Text>
         <Animated.Text
           style={{
-            fontSize: responsiveFontSize(1.5),
+            fontSize: SCREEN_FONT - 5,
             color: "white",
             opacity: fadeActor,
             transform: [{ translateY: transActor }],
@@ -218,5 +222,6 @@ const styles = StyleSheet.create({
   movieEx: {
     flex: 1,
     color: "white",
+    fontSize: SCREEN_FONT - 5,
   },
 });

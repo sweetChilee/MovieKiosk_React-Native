@@ -13,6 +13,7 @@ import Animation from "./Animations";
 import Info from "./Info";
 import { Overlay } from "react-native-elements";
 import { useState } from "react";
+import Food from "./Food";
 
 function MovieListMain() {
   return (
@@ -39,7 +40,7 @@ function TheaterInfo() {
 function FoodMenu() {
   return (
     <>
-      <Recommand />
+      <Food />
     </>
   );
 }

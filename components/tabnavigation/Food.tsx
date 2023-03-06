@@ -1,46 +1,10 @@
-import * as React from "react";
-import { Text, View } from "react-native";
+import { StyleSheet, View, Image } from "react-native";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
-import { COLOR } from "../../config/globalstyles";
-
-function TotalScreen() {
-  return (
-    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-      <Text>Total</Text>
-    </View>
-  );
-}
-function SetScreen() {
-  return (
-    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-      <Text>Set!</Text>
-    </View>
-  );
-}
-
-function PopconScreen() {
-  return (
-    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-      <Text>Popcon!</Text>
-    </View>
-  );
-}
-
-function DrinkScreen() {
-  return (
-    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-      <Text>Drink!</Text>
-    </View>
-  );
-}
-
-function FoodScreen() {
-  return (
-    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-      <Text>Food!</Text>
-    </View>
-  );
-}
+import SetScreen from "./foodMenu/Set";
+import PopconScreen from "./foodMenu/PopCorn";
+import DrinkScreen from "./foodMenu/Drink";
+import SnackScreen from "./foodMenu/Snack";
+import { SCREEN_FONT } from "../../config/globalstyles";
 
 const Tab = createMaterialTopTabNavigator();
 
@@ -50,26 +14,38 @@ export default function Food() {
       <View
         style={{ flex: 0.25, alignItems: "center", justifyContent: "center" }}
       >
-        <Text style={{ color: "black" }}>광고</Text>
+        <Image
+          source={require("./foodMenu/assets/img/background/back.png")}
+          style={{ flex: 1 }}
+          resizeMode="cover"
+        />
       </View>
 
       <Tab.Navigator
         screenOptions={{
-          tabBarActiveTintColor: COLOR,
-          tabBarInactiveTintColor: "white",
-
+          tabBarPressColor: "white",
+          tabBarLabelStyle: { fontSize: SCREEN_FONT, color: "white" },
           tabBarStyle: {
-            backgroundColor: "rgb(66, 66, 66)",
-            // 그림자 효과 주기
+            backgroundColor: "rgb(55, 55, 55)",
+            flex: 0.09,
           },
         }}
       >
-        <Tab.Screen name="Total" component={TotalScreen} />
-        <Tab.Screen name="Set" component={SetScreen} />
-        <Tab.Screen name="Popcon" component={PopconScreen} />
-        <Tab.Screen name="Drink" component={DrinkScreen} />
-        <Tab.Screen name="Food" component={FoodScreen} />
+        <Tab.Screen name="세트" component={SetScreen} />
+        <Tab.Screen name="팝콘" component={PopconScreen} />
+        <Tab.Screen name="음료" component={DrinkScreen} />
+        <Tab.Screen name="간식" component={SnackScreen} />
       </Tab.Navigator>
     </>
   );
 }
+
+const styles = StyleSheet.create({
+  menutab: {
+    paddingHorizontal: 30,
+  },
+  btnText: {
+    color: "white",
+    textAlign: "center",
+  },
+});

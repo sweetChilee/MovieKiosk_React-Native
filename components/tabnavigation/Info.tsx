@@ -1,10 +1,17 @@
-import { View, StyleSheet, Text } from "react-native";
+import { View, StyleSheet, Text, Dimensions } from "react-native";
 import { responsiveFontSize } from "react-native-responsive-dimensions";
-import { COLOR } from "../../config/globalstyles";
+import { COLOR, SCREEN_FONT } from "../../config/globalstyles";
 import Map from "./Map";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { useState } from "react";
 import InfoHelpComment from "../help/InfoHelpComment";
+
+export const INFO_FONT = Dimensions.get("window").width > 500 ? 24 : 10;
+export const INFO_THEATER_FONT = Dimensions.get("window").width > 500 ? 24 : 15;
+export const INFO_TITLE_FONT = Dimensions.get("window").width > 500 ? 52 : 32;
+
+export const INFO_ICON = Dimensions.get("window").width > 500 ? 100 : 50;
+export const INFO_ACTIVE_ICON = Dimensions.get("window").width > 500 ? 120 : 70;
 
 export default function Info() {
   const [theater, setTheater] = useState(false);
@@ -35,7 +42,7 @@ export default function Info() {
         style={{
           color: "white",
           fontWeight: "900",
-          fontSize: responsiveFontSize(4.5),
+          fontSize: INFO_TITLE_FONT,
           backgroundColor: "rgb(66, 66, 66)",
           paddingTop: 20,
           paddingLeft: 20,
@@ -45,7 +52,7 @@ export default function Info() {
       </Text>
       <Text
         style={{
-          fontSize: responsiveFontSize(1.8),
+          fontSize: INFO_FONT,
           backgroundColor: "rgb(66, 66, 66)",
           color: "white",
           paddingLeft: 15,
@@ -62,7 +69,7 @@ export default function Info() {
             {theater ? (
               <MaterialCommunityIcons
                 name="theater"
-                size={140}
+                size={Dimensions.get("window").width > 500 ? 200 : 120}
                 color="rgb(167, 77, 191)"
                 onPress={() => {
                   setTheater(!theater);
@@ -71,7 +78,7 @@ export default function Info() {
             ) : (
               <MaterialCommunityIcons
                 name="theater"
-                size={100}
+                size={Dimensions.get("window").width > 500 ? 170 : 100}
                 color="white"
                 onPress={() => {
                   setTheater(!theater);
@@ -96,7 +103,7 @@ export default function Info() {
             <View style={{ alignItems: "center" }}>
               <MaterialCommunityIcons
                 name="human-male-female"
-                size={70}
+                size={INFO_ACTIVE_ICON}
                 color="rgb(167, 77, 191)"
                 onPress={() => {
                   setToilet(!toilet);
@@ -108,7 +115,7 @@ export default function Info() {
             <View style={{ alignItems: "center" }}>
               <MaterialCommunityIcons
                 name="human-male-female"
-                size={50}
+                size={INFO_ICON}
                 color="white"
                 onPress={() => {
                   setToilet(!toilet);
@@ -122,7 +129,7 @@ export default function Info() {
             <View style={{ alignItems: "center" }}>
               <MaterialCommunityIcons
                 name="ticket"
-                size={70}
+                size={INFO_ACTIVE_ICON}
                 color="rgb(167, 77, 191)"
                 onPress={() => {
                   setTicket(!ticket);
@@ -134,7 +141,7 @@ export default function Info() {
             <View style={{ alignItems: "center" }}>
               <MaterialCommunityIcons
                 name="ticket"
-                size={50}
+                size={INFO_ICON}
                 color="white"
                 onPress={() => {
                   setTicket(!ticket);
@@ -149,7 +156,7 @@ export default function Info() {
             <View style={{ alignItems: "center" }}>
               <MaterialCommunityIcons
                 name="information-outline"
-                size={70}
+                size={INFO_ACTIVE_ICON}
                 color="rgb(167, 77, 191)"
                 onPress={() => {
                   setInfo(!info);
@@ -158,7 +165,7 @@ export default function Info() {
               <Text
                 style={{
                   ...styles.TheaterTitle,
-                  fontSize: responsiveFontSize(1.5),
+                  fontSize: INFO_FONT,
                 }}
               >
                 안내 데스크
@@ -168,7 +175,7 @@ export default function Info() {
             <View style={{ alignItems: "center" }}>
               <MaterialCommunityIcons
                 name="information-outline"
-                size={50}
+                size={INFO_ICON}
                 color="white"
                 onPress={() => {
                   setInfo(!info);
@@ -177,7 +184,7 @@ export default function Info() {
               <Text
                 style={{
                   ...styles.TheaterTitle,
-                  fontSize: responsiveFontSize(1.5),
+                  fontSize: INFO_FONT,
                 }}
               >
                 안내 데스크
@@ -189,7 +196,7 @@ export default function Info() {
             <View style={{ alignItems: "center" }}>
               <MaterialCommunityIcons
                 name="popcorn"
-                size={70}
+                size={INFO_ACTIVE_ICON}
                 color="rgb(168, 77, 191)"
                 onPress={() => {
                   setSnack(!snack);
@@ -201,7 +208,7 @@ export default function Info() {
             <View style={{ alignItems: "center" }}>
               <MaterialCommunityIcons
                 name="popcorn"
-                size={50}
+                size={INFO_ICON}
                 color="white"
                 onPress={() => {
                   setSnack(!snack);
@@ -216,7 +223,7 @@ export default function Info() {
             <View style={{ alignItems: "center" }}>
               <MaterialCommunityIcons
                 name="exit-run"
-                size={70}
+                size={INFO_ACTIVE_ICON}
                 color="rgb(167, 77, 191)"
                 onPress={() => {
                   setEmergency(!emergency);
@@ -229,7 +236,7 @@ export default function Info() {
             <View style={{ alignItems: "center" }}>
               <MaterialCommunityIcons
                 name="exit-run"
-                size={50}
+                size={INFO_ICON}
                 color="white"
                 onPress={() => {
                   setEmergency(!emergency);
@@ -243,7 +250,7 @@ export default function Info() {
             <View style={{ alignItems: "center" }}>
               <MaterialCommunityIcons
                 name="door-sliding"
-                size={70}
+                size={INFO_ACTIVE_ICON}
                 color="rgb(168, 77, 191)"
                 onPress={() => {
                   setExit(!exit);
@@ -255,7 +262,7 @@ export default function Info() {
             <View style={{ alignItems: "center" }}>
               <MaterialCommunityIcons
                 name="door-sliding"
-                size={50}
+                size={INFO_ICON}
                 color="white"
                 onPress={() => {
                   setExit(!exit);
@@ -286,11 +293,13 @@ const styles = StyleSheet.create({
     flex: 0.3,
     flexDirection: "row",
     justifyContent: "center",
+    fontSize: INFO_FONT,
   },
   TheaterEx2: {
     flex: 0.3,
     flexDirection: "row",
     justifyContent: "center",
+    fontSize: INFO_FONT,
   },
   TheaterEx3: {
     flex: 0.5,
@@ -299,12 +308,12 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   TheaterTitle: {
-    fontSize: responsiveFontSize(1.5),
+    fontSize: INFO_FONT,
     color: "white",
     margin: 10,
   },
   TheaterTitleNum: {
-    fontSize: responsiveFontSize(2.5),
+    fontSize: INFO_THEATER_FONT,
     color: "white",
     margin: 10,
   },

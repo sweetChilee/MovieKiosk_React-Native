@@ -9,9 +9,13 @@ import {
   TouchableOpacity,
   RefreshControl,
   ActivityIndicator,
+  Dimensions,
 } from "react-native";
-import { responsiveFontSize } from "react-native-responsive-dimensions";
-import { SCREEN_HEIGHT, SCREEN_WIDTH } from "../../config/globalstyles";
+import {
+  SCREEN_FONT,
+  SCREEN_HEIGHT,
+  SCREEN_WIDTH,
+} from "../../config/globalstyles";
 
 // icon
 import { MaterialCommunityIcons } from "@expo/vector-icons";
@@ -26,6 +30,10 @@ import { HomeScreenNavigationProp } from "../navigation/types";
 import { SharedElement } from "react-navigation-shared-element";
 import HelpComment from "../help/HelpComment";
 
+// 화면 크기별 이미지 사이즈
+export const SCREEN_IMAGE =
+  Dimensions.get("window").width > 768 ? SCREEN_WIDTH / 1.4 : SCREEN_HEIGHT / 3;
+
 type Movie = {
   rank: number;
   title: string;
@@ -34,18 +42,28 @@ type Movie = {
 
 // 순위 별 트로피 표시 위한 딕셔너리
 const RANK: any = {
-  first: <MaterialCommunityIcons name="trophy-award" size={30} color="gold" />,
+  first: (
+    <MaterialCommunityIcons
+      name="trophy-award"
+      size={SCREEN_FONT}
+      color="gold"
+    />
+  ),
   second: (
-    <MaterialCommunityIcons name="trophy-award" size={30} color="silver" />
+    <MaterialCommunityIcons
+      name="trophy-award"
+      size={SCREEN_FONT}
+      color="silver"
+    />
   ),
   third: (
     <MaterialCommunityIcons
       name="trophy-award"
-      size={30}
+      size={SCREEN_FONT}
       color="rgb(205, 127, 50)"
     />
   ),
-  remain: <Feather name="award" size={20} color="white" />,
+  remain: <Feather name="award" size={SCREEN_FONT} color="white" />,
 };
 
 type ItemProps = {
@@ -96,7 +114,7 @@ function Item({ movieNm, rank }: ItemProps) {
       </View>
       <View style={styles.movieEx}>
         <Text
-          style={{ fontSize: responsiveFontSize(2.3), color: "white" }}
+          style={{ fontSize: SCREEN_FONT, color: "white" }}
           numberOfLines={line}
           ellipsizeMode="tail"
           onPress={() => {
@@ -105,7 +123,13 @@ function Item({ movieNm, rank }: ItemProps) {
         >
           {movieNm}
         </Text>
-        <Text style={{ fontSize: responsiveFontSize(1.5), color: "white" }}>
+        <Text
+          style={{
+            fontSize: SCREEN_FONT - 4,
+            color: "white",
+            marginVertical: 7,
+          }}
+        >
           {(() => {
             if (+rank === 1) return RANK.first;
             else if (+rank === 2) return RANK.second;
@@ -114,7 +138,7 @@ function Item({ movieNm, rank }: ItemProps) {
           })()}{" "}
           예매율 순위 : {rank}
         </Text>
-        <Text style={{ fontSize: responsiveFontSize(1.5), color: "white" }}>
+        <Text style={{ fontSize: SCREEN_FONT / 2, color: "white" }}>
           감독: 감석대 / 배우 : 이만식, 김명섭
         </Text>
         <Text style={styles.movieEx} numberOfLines={3} ellipsizeMode="tail">
@@ -182,7 +206,9 @@ export default function MovieLists() {
           }}
         >
           <ActivityIndicator></ActivityIndicator>
-          <Text style={{ fontSize: 50, color: "white" }}>Loading...</Text>
+          <Text style={{ fontSize: SCREEN_FONT, color: "white" }}>
+            Loading...
+          </Text>
         </View>
       ) : (
         <View style={styles.container}>
@@ -265,12 +291,13 @@ const styles = StyleSheet.create({
   },
   movie_poster: {
     flex: 1,
-    height: SCREEN_HEIGHT / 3,
+    height: SCREEN_IMAGE,
     marginTop: -10,
   },
   movieEx: {
     flex: 1,
     color: "white",
     margin: 4,
+    fontSize: SCREEN_FONT / 2,
   },
 });

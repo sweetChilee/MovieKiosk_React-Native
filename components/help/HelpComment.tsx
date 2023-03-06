@@ -6,8 +6,13 @@ import {
   Animated,
   TouchableOpacity,
   StyleSheet,
+  Dimensions,
 } from "react-native";
 import { COLOR, SCREEN_HEIGHT, SCREEN_WIDTH } from "../../config/globalstyles";
+
+const SCREEN_FLEX = Dimensions.get("window").width > 500 ? 0.55 : 1.3;
+const SCREEN_BOX = Dimensions.get("window").width > 500 ? 170 : 80;
+const HELP_FONT = Dimensions.get("window").width > 500 ? 23 : 12;
 
 const HelpComment = () => {
   const [visible, setVisible] = useState(true);
@@ -64,121 +69,91 @@ const HelpComment = () => {
         alignItems: "center",
       }}
     >
-      <Text
-        style={{
-          fontSize: 35,
-          fontWeight: "900",
-          color: "white",
-          marginBottom: 20,
-        }}
+      <View
+        style={{ flex: 10, justifyContent: "center", alignItems: "center" }}
       >
-        도움말
-      </Text>
-      <TouchableOpacity
-        style={{
-          borderWidth: 5,
-          borderColor: "black",
-          backgroundColor: COLOR,
-          width: SCREEN_WIDTH / 2,
-          height: 70,
-          borderRadius: 50,
-          alignItems: "center",
-          justifyContent: "center",
-          marginBottom: SCREEN_HEIGHT / 20,
-        }}
-        activeOpacity={0.7}
-        onPress={() => {
-          if (count === fadeHelpList.length) {
+        <Text
+          style={{
+            fontSize: 35,
+            fontWeight: "900",
+            color: "white",
+            marginBottom: 20,
+          }}
+        >
+          도움말
+        </Text>
+        <TouchableOpacity
+          style={styles.nextBtn}
+          activeOpacity={0.7}
+          onPress={() => {
+            if (count === fadeHelpList.length) {
+              toggleOverlay();
+            } else {
+              fadeHelpList[count]();
+              setCount((prev) => prev + 1);
+            }
+          }}
+        >
+          {count === 4 ? (
+            <Text style={{ fontSize: 35, fontWeight: "800" }}>END</Text>
+          ) : (
+            <Text style={{ fontSize: 35, fontWeight: "800" }}>NEXT</Text>
+          )}
+        </TouchableOpacity>
+        <Text
+          style={{
+            fontSize: 20,
+            fontWeight: "700",
+            color: "rgba(255, 255, 255, 0.5)",
+          }}
+          onPress={() => {
             toggleOverlay();
-          } else {
-            fadeHelpList[count]();
-            setCount((prev) => prev + 1);
-          }
-        }}
-      >
-        {count === 4 ? (
-          <Text style={{ fontSize: 35, fontWeight: "800" }}>END</Text>
-        ) : (
-          <Text style={{ fontSize: 35, fontWeight: "800" }}>NEXT</Text>
-        )}
-      </TouchableOpacity>
-      <Text
-        style={{
-          fontSize: 20,
-          fontWeight: "700",
-          color: "rgba(255, 255, 255, 0.5)",
-        }}
-        onPress={() => {
-          toggleOverlay();
-        }}
-      >
-        SKIP_ _
-      </Text>
-      <Animated.View
-        style={{
-          flex: 1,
-          position: "absolute",
-          bottom: 17,
-          right: 110,
-          opacity: fadeAnim,
-        }}
-      >
-        <Text style={{ ...styles.comment, marginBottom: 40 }}>
-          상영중인 영화를 볼 수 있어요
+          }}
+        >
+          SKIP_ _
         </Text>
-        <View style={styles.firstHelpBox}>
-          <View style={styles.secondHelpBox}></View>
-        </View>
-      </Animated.View>
+      </View>
+      <View style={{ flex: 1, flexDirection: "row" }}>
+        <Animated.View style={{ flex: 1, opacity: fadeAnim }}>
+          <Text style={styles.animationText}>상영 중인</Text>
+          <Text style={styles.animationText}>영화를 볼 수 있어요</Text>
+        </Animated.View>
+        <Animated.View style={{ flex: 1, opacity: fadeAnim2 }}>
+          <Text style={styles.animationText}>장르를 선택하면</Text>
+          <Text style={styles.animationText}>영화를 추천해줘요</Text>
+        </Animated.View>
+        <Animated.View style={{ flex: 1, opacity: fadeAnim3 }}>
+          <Text style={styles.animationText}>장소 위치 정보를 </Text>
+          <Text style={styles.animationText}>알 수 있어요</Text>
+        </Animated.View>
+        <Animated.View style={{ flex: 1, opacity: fadeAnim4 }}>
+          <Text style={styles.animationText}>스낵바</Text>
+          <Text style={styles.animationText}>메뉴를 볼 수 있어요</Text>
+        </Animated.View>
+      </View>
+      <View style={{ flex: SCREEN_FLEX, flexDirection: "row" }}>
+        <Animated.View style={{ ...styles.animationBox, opacity: fadeAnim }}>
+          <View style={styles.firstHelpBox}>
+            <View style={styles.secondHelpBox}></View>
+          </View>
+        </Animated.View>
 
-      <Animated.View
-        style={{
-          flex: 1,
-          position: "absolute",
-          bottom: 17,
-          right: -57,
-          opacity: fadeAnim2,
-        }}
-      >
-        <Text style={styles.comment}>
-          선호 장르를 선택하면 영화를 추천해줘요
-        </Text>
-        <View style={styles.firstHelpBox}>
-          <View style={styles.secondHelpBox}></View>
-        </View>
-      </Animated.View>
-      <Animated.View
-        style={{
-          flex: 1,
-          position: "absolute",
-          bottom: 17,
-          right: -91,
-          opacity: fadeAnim3,
-        }}
-      >
-        <Text style={{ ...styles.comment, marginBottom: 40 }}>
-          장소 위치 정보를 알 수 있어요
-        </Text>
-        <View style={styles.firstHelpBox}>
-          <View style={styles.secondHelpBox}></View>
-        </View>
-      </Animated.View>
-      <Animated.View
-        style={{
-          flex: 1,
-          position: "absolute",
-          bottom: 17,
-          right: -232,
-          opacity: fadeAnim4,
-        }}
-      >
-        <Text style={{ ...styles.comment, marginBottom: 80 }}>
-          스낵바에 무슨 메뉴가 있는지 볼까요?
-        </Text>
-        <View style={styles.firstHelpBox}>
-          <View style={styles.secondHelpBox}></View>
-        </View>
-      </Animated.View>
+        <Animated.View style={{ ...styles.animationBox, opacity: fadeAnim2 }}>
+          <View style={styles.firstHelpBox}>
+            <View style={styles.secondHelpBox}></View>
+          </View>
+        </Animated.View>
+        <Animated.View style={{ ...styles.animationBox, opacity: fadeAnim3 }}>
+          <View style={styles.firstHelpBox}>
+            <View style={styles.secondHelpBox}></View>
+          </View>
+        </Animated.View>
+        <Animated.View style={{ ...styles.animationBox, opacity: fadeAnim4 }}>
+          <View style={styles.firstHelpBox}>
+            <View style={styles.secondHelpBox}></View>
+          </View>
+        </Animated.View>
+      </View>
     </Overlay>
   );
 };
@@ -186,24 +161,41 @@ const HelpComment = () => {
 export default HelpComment;
 
 const styles = StyleSheet.create({
+  nextBtn: {
+    borderWidth: 5,
+    borderColor: "black",
+    backgroundColor: COLOR,
+    width: SCREEN_WIDTH / 2,
+    height: 70,
+    borderRadius: 50,
+    alignItems: "center",
+    justifyContent: "center",
+    marginBottom: 10,
+  },
   firstHelpBox: {
     borderWidth: 5,
     borderColor: "black",
     borderRadius: 50,
-    width: 75,
+    width: SCREEN_BOX,
     height: 70,
   },
   secondHelpBox: {
     borderWidth: 3,
     borderColor: COLOR,
     borderRadius: 50,
-    width: 65,
+    width: SCREEN_BOX - 10,
     height: 60,
   },
-  comment: {
+  animationBox: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  animationText: {
+    flex: 1,
     color: "white",
-    fontSize: 20,
-    marginBottom: 60,
+    textAlign: "center",
     fontWeight: "700",
+    fontSize: HELP_FONT,
   },
 });

@@ -1,4 +1,4 @@
-import { Dimensions } from "react-native";
+import { Dimensions, useWindowDimensions } from "react-native";
 
 export const colors = {
   primary: "#EC8B57",
@@ -11,15 +11,6 @@ export const colors = {
   statusGrey: "#666666",
   textGrey: "#A2A2A2",
   darkBlue: "#83abeb",
-};
-
-export const fonts = {
-  SpoqaHanSansNeo: "SpoqaHanSansNeo",
-  SpoqaHanSansNeo_Thin: "SpoqaHanSansNeo-Thin",
-  SpoqaHanSansNeo_Light: "SpoqaHanSansNeo-Light",
-  SpoqaHanSansNeo_Medium: "SpoqaHanSansNeo-Medium",
-  SpoqaHanSansNeo_Regular: "SpoqaHanSansNeo-Regular",
-  SpoqaHanSansNeo_Bold: "SpoqaHanSansNeo-Bold",
 };
 
 export const basicDimensions = {
@@ -36,5 +27,11 @@ export const WIDTH: any = // 가로 변환 작업
 
 export const { width: SCREEN_WIDTH } = Dimensions.get("window");
 export const { height: SCREEN_HEIGHT } = Dimensions.get("window");
+
+// FONT
+export const SCREEN_FONT = Dimensions.get("window").width > 500 ? 22 : 18;
+
+// FOOD
+export const TITLE_FONT = Dimensions.get("window").width > 500 ? 27 : 20;
 
 export const COLOR: string = "rgb(168, 77, 191)";
