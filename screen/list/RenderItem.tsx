@@ -205,6 +205,12 @@ const styles = StyleSheet.create({
     fontSize: SCREEN_WIDTH / 27,
     fontWeight: "700",
     color: "white",
+    shadowOffset: {
+      width: 10,
+      height: 10,
+    },
+    shadowOpacity: 0.7,
+    shadowRadius: 3,
   },
   rank: {
     fontSize: SCREEN_WIDTH / 35,

@@ -10,7 +10,11 @@ import {
 } from "react-native";
 import { Overlay } from "react-native-elements";
 import MainLoading from "../../../component/MainLoading";
-import { COLOR, SCREEN_WIDTH } from "../../../config/globalstyles";
+import {
+  COLOR,
+  SCREEN_HEIGHT,
+  SCREEN_WIDTH,
+} from "../../../config/globalstyles";
 import UseInterval from "./UseInterval";
 
 type Movie = {
@@ -231,11 +235,11 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "rgb(66, 66, 66)",
-    margin: SCREEN_WIDTH / 100,
+    margin: SCREEN_HEIGHT / 80,
   },
   outBox: {
     flex: 1,
-    borderWidth: 8,
+    borderWidth: SCREEN_HEIGHT / 120,
     borderColor: "black",
     borderRadius: 30,
     shadowColor: "black",
@@ -249,7 +253,7 @@ const styles = StyleSheet.create({
   },
   inBox: {
     flex: 1,
-    borderWidth: 5,
+    borderWidth: SCREEN_HEIGHT / 150,
     borderColor: COLOR,
     borderRadius: 25,
   },

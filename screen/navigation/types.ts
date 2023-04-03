@@ -6,6 +6,9 @@ export type HomeStackNavigatorParamList = {
   Navlist: undefined;
   MovieDetails: undefined;
   GenreChoice: undefined;
+  LoadingPage: undefined;
+  FilteredMovie: undefined;
+  Result: undefined;
 };
 
 export type HomeScreenNavigationProp = NativeStackNavigationProp<
@@ -18,6 +21,12 @@ export type RecommendScreenNavigationProp = NativeStackNavigationProp<
   HomeStackNavigatorParamList,
   "Navlist",
   "GenreChoice"
+>;
+
+export type LoadingScreenNavigationProp = NativeStackNavigationProp<
+  HomeStackNavigatorParamList,
+  "GenreChoice",
+  "LoadingPage"
 >;
 
 export type DetailsScreenRouteProp = RouteProp<

@@ -29,8 +29,8 @@ export default function Food() {
       <Tab.Navigator
         screenOptions={{
           tabBarLabelStyle: {
-            fontSize: SCREEN_WIDTH / 35,
-            fontWeight: "bold",
+            fontSize: SCREEN_HEIGHT / 45,
+            fontWeight: "700",
           },
           tabBarStyle: {
             flex: 0.07,

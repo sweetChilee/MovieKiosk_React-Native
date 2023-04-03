@@ -1,7 +1,8 @@
 import { StyleSheet, View, Text, Animated } from "react-native";
 import { Overlay } from "react-native-elements";
 import { SCREEN_HEIGHT, SCREEN_WIDTH } from "../../../config/globalstyles";
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
+import { Video } from "expo-av";
 
 type Props = {
   isVisible: boolean;
@@ -34,9 +35,10 @@ export default function InfoOverlay(props: any) {
     useNativeDriver: true,
   }).start();
 
+  let v = props.visible;
   return (
     <Overlay
-      {...props}
+      isVisible={v}
       overlayStyle={{
         flex: 1,
         backgroundColor: "transparent",
@@ -51,7 +53,13 @@ export default function InfoOverlay(props: any) {
         }}
       >
         <View style={{ flex: 1 }}>{props.children}</View>
-        <View style={{ flex: 1, backgroundColor: "blue" }}></View>
+        <Video
+          source={props.videoSrc}
+          style={{ flex: 1, width: "100%" }}
+          useNativeControls
+          shouldPlay={true}
+          isLooping
+        />
         <View style={{ flex: 1 }}></View>
       </Animated.View>
     </Overlay>

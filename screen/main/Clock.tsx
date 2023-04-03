@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { StyleSheet, Text, View } from "react-native";
-import { SCREEN_WIDTH } from "../../config/globalstyles";
+import { SCREEN_HEIGHT, SCREEN_WIDTH } from "../../config/globalstyles";
 
 export default function Clock() {
   const [time, setTime] = useState(new Date());
@@ -16,7 +16,7 @@ export default function Clock() {
     <View style={styles.clock}>
       <Text style={styles.date}>{time.toLocaleDateString()}</Text>
       <Text style={styles.time}>
-        <Text style={{ fontSize: SCREEN_WIDTH / 25 }}>
+        <Text style={{ fontSize: SCREEN_HEIGHT / 40 }}>
           {time.toLocaleTimeString().slice(0, 2)}
         </Text>
         {time.toLocaleTimeString(["it-IT"], {
@@ -36,17 +36,29 @@ const styles = StyleSheet.create({
     backgroundColor: "rgb(66, 66, 66)",
   },
   date: {
-    fontSize: SCREEN_WIDTH / 30,
+    fontSize: SCREEN_HEIGHT / 40,
     textAlign: "center",
     fontWeight: "700",
     color: "rgb(168, 77, 191)",
-    letterSpacing: 3,
+    letterSpacing: 2,
+    shadowOffset: {
+      width: 10,
+      height: 10,
+    },
+    shadowOpacity: 0.7,
+    shadowRadius: 5,
   },
   time: {
-    fontSize: SCREEN_WIDTH / 10,
+    fontSize: SCREEN_HEIGHT / 15,
     textAlign: "center",
     color: "rgb(168, 77, 191)",
     fontWeight: "800",
     letterSpacing: 6,
+    shadowOffset: {
+      width: 10,
+      height: 10,
+    },
+    shadowOpacity: 0.7,
+    shadowRadius: 5,
   },
 });

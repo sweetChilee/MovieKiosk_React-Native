@@ -5,11 +5,8 @@ import {
   TouchableOpacity,
   Dimensions,
 } from "react-native";
-import LoginModal from "./LoginModal";
 import { useNavigation } from "@react-navigation/native";
 import { HomeScreenNavigationProp } from "../navigation/types";
-import { useState } from "react";
-import { SCREEN_WIDTH } from "../../config/globalstyles";
 
 const { height: SCREEN_HEIGHT } = Dimensions.get("window");
 
@@ -28,7 +25,7 @@ export default function Login() {
         <Text
           style={{
             color: "black",
-            fontSize: SCREEN_WIDTH / 20,
+            fontSize: SCREEN_HEIGHT / 25,
             fontWeight: "800",
           }}
         >
@@ -50,13 +47,19 @@ const styles: any = StyleSheet.create({
   aBtn: {
     flex: 1,
     backgroundColor: "rgb(168, 77, 191)",
-    borderWidth: SCREEN_WIDTH / 100,
+    borderWidth: SCREEN_HEIGHT / 120,
     borderColor: "black",
     borderRadius: 50,
     height: SCREEN_HEIGHT / 12,
-    margin: SCREEN_WIDTH / 10,
-    marginTop: SCREEN_WIDTH / 20,
+    marginBottom: SCREEN_HEIGHT / 30,
+    marginHorizontal: SCREEN_HEIGHT / 10,
     justifyContent: "center",
     alignItems: "center",
+    shadowOffset: {
+      width: 10,
+      height: 10,
+    },
+    shadowOpacity: 0.7,
+    shadowRadius: 7,
   },
 });

@@ -4,18 +4,18 @@ import {
   TouchableOpacity,
   Image,
   StyleSheet,
+  ImageBackground,
 } from "react-native";
 import { COLOR, SCREEN_WIDTH } from "../../../config/globalstyles";
 
 export default function RecommendResultPoster(props: any) {
   return (
     <TouchableOpacity style={styles.subitem} {...props}>
-      <Image
+      <ImageBackground
         source={{ uri: props.URI }}
         style={{
           width: "100%",
           height: props.height,
-          borderRadius: props.borderRadius,
         }}
         resizeMode="cover"
       />

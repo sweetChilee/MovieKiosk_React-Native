@@ -1,10 +1,14 @@
+import { useNavigation } from "@react-navigation/native";
 import LottieView from "lottie-react-native";
 import { useRef } from "react";
-import { View, StyleSheet, Animated } from "react-native";
+import { View, StyleSheet, Animated, Text } from "react-native";
 import AnimatedTyping from "../../../component/AnimatedTyping";
+import { LoadingScreenNavigationProp } from "../../navigation/types";
 import LoadingPosterAnim from "./LoadingPosterAnim";
 
 export default function LoadingPage() {
+  const navigation = useNavigation<LoadingScreenNavigationProp>();
+
   const a = useRef(new Animated.Value(0)).current;
 
   return (
@@ -15,7 +19,7 @@ export default function LoadingPage() {
       <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
         <LottieView
           style={{ flex: 1, width: "100%" }}
-          source={require("../../../assets/lottie/31936-the-6-loading-circles.json")}
+          source={require("../../../assets/lottie/recommend-loading.json")}
           autoPlay
           loop
         ></LottieView>

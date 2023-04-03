@@ -2,7 +2,6 @@ import Clock from "./Clock";
 import Login from "./Login";
 import HeadPoster from "./HeadPoster";
 import { StatusBar } from "expo-status-bar";
-import ImageCarousel from "./carousel/ImageCarousel";
 import Carousel from "./carousel/Carousel";
 
 interface ImageCarouselItem {

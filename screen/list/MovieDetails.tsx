@@ -234,5 +234,11 @@ const styles = StyleSheet.create({
     color: "white",
     fontSize: SCREEN_FONT - 3,
     padding: SCREEN_WIDTH / 50,
+    shadowOffset: {
+      width: 10,
+      height: 10,
+    },
+    shadowOpacity: 0.4,
+    shadowRadius: 2,
   },
 });

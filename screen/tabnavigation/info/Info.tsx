@@ -1,21 +1,11 @@
-import { View, StyleSheet, Text, Dimensions, Modal } from "react-native";
-import {
-  COLOR,
-  SCREEN_FONT,
-  SCREEN_HEIGHT,
-  SCREEN_WIDTH,
-} from "../../../config/globalstyles";
+import { View, StyleSheet, Text } from "react-native";
+import { COLOR, SCREEN_HEIGHT } from "../../../config/globalstyles";
 import Map from "../Map";
 import { useState } from "react";
-import InfoHelpComment from "../../help/InfoHelpComment";
 import TheaterIcon from "../../../component/TheaterIcon";
 import TheaterActiveIcon from "../../../component/TheaterActiveIcon";
 import InfoOverlay from "./InfoOverlay";
 import { Feather } from "@expo/vector-icons";
-
-export const INFO_FONT = Dimensions.get("window").width > 500 ? 24 : 10;
-export const INFO_THEATER_FONT = Dimensions.get("window").width > 500 ? 24 : 15;
-export const INFO_TITLE_FONT = Dimensions.get("window").width > 500 ? 52 : 32;
 
 export default function Info() {
   const [theater, setTheater] = useState(false);
@@ -46,7 +36,7 @@ export default function Info() {
         style={{
           color: "white",
           fontWeight: "900",
-          fontSize: INFO_TITLE_FONT,
+          fontSize: SCREEN_HEIGHT / 25,
           backgroundColor: "rgb(66, 66, 66)",
           paddingTop: 20,
           paddingLeft: 20,
@@ -83,7 +73,10 @@ export default function Info() {
               </>
             )}
             {theater ? (
-              <InfoOverlay isVisible={theater}>
+              <InfoOverlay
+                isVisible={theater}
+                videoSrc={require("../../../assets/videos/01cinemax4.mp4")}
+              >
                 <Feather
                   name="x"
                   size={50}
@@ -117,7 +110,10 @@ export default function Info() {
               </>
             )}
             {theater2 ? (
-              <InfoOverlay isVisible={theater2} vs={"예고편.mp4"}>
+              <InfoOverlay
+                isVisible={theater2}
+                videoSrc={require("../../../assets/videos/02cinemax4.mp4")}
+              >
                 <Feather
                   name="x"
                   size={50}
@@ -151,7 +147,10 @@ export default function Info() {
               </>
             )}
             {theater3 ? (
-              <InfoOverlay isVisible={theater3}>
+              <InfoOverlay
+                isVisible={theater3}
+                videoSrc={require("../../../assets/videos/03cinemax4.mp4")}
+              >
                 <Feather
                   name="x"
                   size={50}
@@ -200,7 +199,10 @@ export default function Info() {
               </InfoOverlay>
             ) : null}
             {theater4 ? (
-              <InfoOverlay isVisible={theater4}>
+              <InfoOverlay
+                isVisible={theater4}
+                videoSrc={require("../../../assets/videos/04cinemax4.mp4")}
+              >
                 <Feather
                   name="x"
                   size={50}
@@ -234,7 +236,10 @@ export default function Info() {
               </>
             )}
             {theater5 ? (
-              <InfoOverlay isVisible={theater5}>
+              <InfoOverlay
+                isVisible={theater5}
+                videoSrc={require("../../../assets/videos/05cinemax4.mp4")}
+              >
                 <Feather
                   name="x"
                   size={50}
@@ -268,7 +273,10 @@ export default function Info() {
               </>
             )}
             {theater6 ? (
-              <InfoOverlay isVisible={theater6}>
+              <InfoOverlay
+                isVisible={theater6}
+                videoSrc={require("../../../assets/videos/06cinemax4.mp4")}
+              >
                 <Feather
                   name="x"
                   size={50}
@@ -282,7 +290,6 @@ export default function Info() {
             ) : null}
           </View>
         </View>
-        <InfoHelpComment />
       </View>
     </>
   );
@@ -296,19 +303,7 @@ const styles = StyleSheet.create({
   TheaterExplain: {
     flex: 1,
     backgroundColor: "rgb(66,66,66)",
-    paddingVertical: 10,
-  },
-  TheaterEx1: {
-    flex: 0.3,
-    flexDirection: "row",
-    justifyContent: "center",
-    fontSize: INFO_FONT,
-  },
-  TheaterEx2: {
-    flex: 0.3,
-    flexDirection: "row",
-    justifyContent: "center",
-    fontSize: INFO_FONT,
+    paddingVertical: SCREEN_HEIGHT / 120,
   },
   theaterArea: {
     flex: 1,
@@ -321,8 +316,14 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   TheaterTitleNum: {
-    fontSize: INFO_THEATER_FONT,
+    fontSize: SCREEN_HEIGHT / 45,
     color: "white",
-    margin: 10,
+    margin: SCREEN_HEIGHT / 100,
+    shadowOffset: {
+      width: 10,
+      height: 10,
+    },
+    shadowOpacity: 0.7,
+    shadowRadius: 2,
   },
 });

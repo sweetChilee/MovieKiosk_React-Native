@@ -1,14 +1,7 @@
 import React, { useEffect, useState } from "react";
-import {
-  StyleSheet,
-  Text,
-  View,
-  FlatList,
-  ImageBackground,
-  ActivityIndicator,
-} from "react-native";
-
-import { SCREEN_FONT } from "../../config/globalstyles";
+import { StyleSheet, View, FlatList, ImageBackground } from "react-native";
+import LoadingOverlay from "../../component/LoadingOverlay";
+import HelpComment from "../help/HelpComment";
 
 import { ItemProps, Movie } from "./Data";
 import { getBoxOfficeData } from "./getBoxOfficeData";
@@ -43,52 +36,37 @@ export default function MovieListTest() {
 
   return (
     <>
-      {isLoading ? (
-        <View
-          style={{
-            flex: 1,
-            backgroundColor: "rgb(66, 66, 66)",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          <ActivityIndicator></ActivityIndicator>
-          <Text style={{ fontSize: SCREEN_FONT, color: "white" }}>
-            Loading...
-          </Text>
+      <LoadingOverlay visible={isLoading} />
+      <HelpComment />
+      <View style={{ flex: 1, backgroundColor: "rgb(33, 33, 33)" }}>
+        <View style={styles.banner}>
+          <ImageBackground
+            source={require("../../img/Suzume-banner4.jpeg")}
+            style={{ flex: 1 }}
+            resizeMode="cover"
+          />
         </View>
-      ) : (
-        <View style={{ flex: 1, backgroundColor: "rgb(33, 33, 33)" }}>
-          <View style={styles.banner}>
-            <ImageBackground
-              source={require("../../img/Suzume-banner4.jpeg")}
-              style={{ flex: 1 }}
-              resizeMode="cover"
-            />
-          </View>
-
-          <FlatList
-            data={formatData(data, numColumns)}
-            style={styles.container}
-            renderItem={({ item }) => (
-              <>
-                <RenderItem
-                  titleNm={item.titleNm}
-                  // picture={item.picture}
-                  directorNm={item.directorNm}
-                  actorNm={item.actorNm}
-                  peopleNm={item.peopleNm}
-                  overView={item.overView}
-                  genreName={item.genreName}
-                  poster={item.poster}
-                  rank={item.rank}
-                ></RenderItem>
-              </>
-            )}
-            numColumns={2}
-          ></FlatList>
-        </View>
-      )}
+        <FlatList
+          data={formatData(data, numColumns)}
+          style={styles.container}
+          renderItem={({ item }) => (
+            <>
+              <RenderItem
+                titleNm={item.titleNm}
+                // picture={item.picture}
+                directorNm={item.directorNm}
+                actorNm={item.actorNm}
+                peopleNm={item.peopleNm}
+                overView={item.overView}
+                genreName={item.genreName}
+                poster={item.poster}
+                rank={item.rank}
+              ></RenderItem>
+            </>
+          )}
+          numColumns={2}
+        ></FlatList>
+      </View>
     </>
   );
 }

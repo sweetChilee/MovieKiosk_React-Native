@@ -10,6 +10,5 @@ const styles = StyleSheet.create({
     backgroundColor: COLOR,
     width: "60%",
     height: 2,
-    marginTop: -10,
   },
 });

@@ -23,7 +23,10 @@ export const getBoxOfficeData = async () => {
       const Json = await response.json();
 
       if (Json.actor.length === 0) {
-        const directorNm = `감독 : ${Json.directors[0].peopleNm} / 성우`;
+        let directorNm = "Director";
+        if (Json.directors.length != 0) {
+          directorNm = `감독 : ${Json.directors[0].peopleNm} / 성우`;
+        }
         const movieCode = Json.movieCode;
         const titleNm = Json.koTitle;
         const rank = i + 1;
@@ -47,7 +50,10 @@ export const getBoxOfficeData = async () => {
           genreName: genreName,
         });
       } else {
-        const directorNm = Json.directors[0].peopleNm;
+        let directorNm = "Director";
+        if (Json.directors.length != 0) {
+          directorNm = `감독 : ${Json.directors[0].peopleNm} / 성우`;
+        }
         const rank = i + 1;
         const movieCode = Json.movieCode;
         const titleNm = Json.koTitle;

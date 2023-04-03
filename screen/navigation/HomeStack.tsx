@@ -6,6 +6,9 @@ import NavList from "../tabnavigation/NavList";
 import MovieDetails from "../list/MovieDetails";
 import { createSharedElementStackNavigator } from "react-navigation-shared-element";
 import GenreChoice from "../tabnavigation/recommend/GenreChoice";
+import LoadingPage from "../tabnavigation/recommend/LoadingPage";
+import FilteredMovie from "../tabnavigation/recommend/FilteredMovie";
+import Result from "../tabnavigation/recommend/Result";
 
 // const HomeStack = createNativeStackNavigator<HomeStackNavigatorParamList>();
 
@@ -56,6 +59,42 @@ const HomeStackNavigator = () => {
         <HomeStack.Screen
           name="GenreChoice"
           component={GenreChoice}
+          options={({ navigation }) => ({
+            headerShown: false,
+            gestureEnabled: true,
+            transitionSpec: {
+              open: { animation: "timing", config: { duration: 300 } },
+              close: { animation: "timing", config: { duration: 300 } },
+            },
+          })}
+        />
+        <HomeStack.Screen
+          name="LoadingPage"
+          component={LoadingPage}
+          options={({ navigation }) => ({
+            headerShown: false,
+            gestureEnabled: true,
+            transitionSpec: {
+              open: { animation: "timing", config: { duration: 300 } },
+              close: { animation: "timing", config: { duration: 300 } },
+            },
+          })}
+        />
+        <HomeStack.Screen
+          name="FilteredMovie"
+          component={FilteredMovie}
+          options={({ navigation }) => ({
+            headerShown: false,
+            gestureEnabled: true,
+            transitionSpec: {
+              open: { animation: "timing", config: { duration: 300 } },
+              close: { animation: "timing", config: { duration: 300 } },
+            },
+          })}
+        />
+        <HomeStack.Screen
+          name="Result"
+          component={Result}
           options={({ navigation }) => ({
             headerShown: false,
             gestureEnabled: true,

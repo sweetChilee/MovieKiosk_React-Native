@@ -50,14 +50,6 @@ function FoodMenu() {
 const Tab = createBottomTabNavigator();
 
 export default function NavList() {
-  const navigation = useNavigation<HomeScreenNavigationProp>();
-
-  // React.useEffect(() => {
-  //   setInterval(() => {
-  //     navigation.navigate("Main");
-  //   }, 10000);
-  // }, [test]);
-
   return (
     <Tab.Navigator
       screenOptions={{
@@ -142,18 +134,3 @@ export default function NavList() {
     </Tab.Navigator>
   );
 }
-
-const styles = StyleSheet.create({
-  banner: {
-    flex: 1,
-    backgroundColor: "black",
-  },
-  main: {
-    flex: 5,
-    backgroundColor: "grey",
-  },
-  nav: {
-    flex: 1,
-    backgroundColor: "black",
-  },
-});

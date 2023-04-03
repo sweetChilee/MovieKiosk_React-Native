@@ -74,10 +74,10 @@ const HelpComment = () => {
       >
         <Text
           style={{
-            fontSize: 35,
+            fontSize: SCREEN_HEIGHT / 35,
             fontWeight: "900",
             color: "white",
-            marginBottom: 20,
+            marginBottom: SCREEN_HEIGHT / 50,
           }}
         >
           도움말
@@ -95,14 +95,18 @@ const HelpComment = () => {
           }}
         >
           {count === 4 ? (
-            <Text style={{ fontSize: 35, fontWeight: "800" }}>END</Text>
+            <Text style={{ fontSize: SCREEN_HEIGHT / 25, fontWeight: "800" }}>
+              END
+            </Text>
           ) : (
-            <Text style={{ fontSize: 35, fontWeight: "800" }}>NEXT</Text>
+            <Text style={{ fontSize: SCREEN_HEIGHT / 25, fontWeight: "800" }}>
+              NEXT
+            </Text>
           )}
         </TouchableOpacity>
         <Text
           style={{
-            fontSize: 20,
+            fontSize: SCREEN_HEIGHT / 50,
             fontWeight: "700",
             color: "rgba(255, 255, 255, 0.5)",
           }}
@@ -162,15 +166,15 @@ export default HelpComment;
 
 const styles = StyleSheet.create({
   nextBtn: {
-    borderWidth: 5,
+    borderWidth: SCREEN_HEIGHT / 130,
     borderColor: "black",
     backgroundColor: COLOR,
     width: SCREEN_WIDTH / 2,
-    height: 70,
+    height: SCREEN_HEIGHT / 15,
     borderRadius: 50,
     alignItems: "center",
     justifyContent: "center",
-    marginBottom: 10,
+    marginBottom: SCREEN_HEIGHT / 100,
   },
   firstHelpBox: {
     borderWidth: 5,
@@ -196,6 +200,6 @@ const styles = StyleSheet.create({
     color: "white",
     textAlign: "center",
     fontWeight: "700",
-    fontSize: HELP_FONT,
+    fontSize: SCREEN_HEIGHT / 60,
   },
 });

@@ -16,18 +16,7 @@ export default function PopCorn() {
     return (
       <View style={styles.container}>
         <View style={styles.outBox}>
-          <View
-            style={{
-              flex: 1,
-              width: "100%",
-              borderWidth: SCREEN_WIDTH / 90,
-              borderColor: COLOR,
-              borderRadius: 30,
-              padding: SCREEN_WIDTH / 20,
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          >
+          <View style={styles.inBox}>
             <Image
               style={{ flex: 1, height: "50%", width: "100%" }}
               source={item.src}
@@ -72,15 +61,21 @@ const styles = StyleSheet.create({
     backgroundColor: "rgb(66, 66, 66)",
     borderWidth: SCREEN_WIDTH / 90,
     borderColor: "black",
-    borderRadius: 40,
-    shadowColor: "black",
+    borderRadius: 200,
+  },
+  inBox: {
+    flex: 1,
+    width: "100%",
+    borderWidth: SCREEN_WIDTH / 90,
+    borderColor: COLOR,
+    borderRadius: 200,
+    padding: SCREEN_WIDTH / 20,
     shadowOffset: {
       width: 10,
       height: 10,
     },
-    shadowOpacity: 0.5,
-    shadowRadius: 7,
-    elevation: 24,
+    shadowOpacity: 0.6,
+    shadowRadius: 5,
   },
   itemInvisible: {
     backgroundColor: "transparent",
