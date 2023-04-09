@@ -4,11 +4,9 @@ import {
   StyleSheet,
   Text,
   View,
-  Image,
   TouchableOpacity,
   Animated,
   ImageBackground,
-  ActivityIndicator,
 } from "react-native";
 import GenrePoster, { b } from "../../../component/GenrePoster";
 import LoadingOverlay from "../../../component/LoadingOverlay";

@@ -1,9 +1,4 @@
-import {
-  MaterialCommunityIcons,
-  Feather,
-  Foundation,
-  FontAwesome5,
-} from "@expo/vector-icons";
+import { MaterialCommunityIcons, Feather } from "@expo/vector-icons";
 import { SCREEN_WIDTH } from "../../config/globalstyles";
 
 // 순위 별 트로피 표시 위한 딕셔너리

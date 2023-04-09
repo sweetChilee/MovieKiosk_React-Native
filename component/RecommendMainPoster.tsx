@@ -1,5 +1,5 @@
 import { ImageBackground, Text, View, ScrollView } from "react-native";
-import { COLOR, SCREEN_HEIGHT, SCREEN_WIDTH } from "../config/globalstyles";
+import { COLOR, SCREEN_HEIGHT } from "../config/globalstyles";
 import { AntDesign } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";

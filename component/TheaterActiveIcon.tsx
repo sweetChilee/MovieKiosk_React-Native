@@ -1,5 +1,4 @@
-import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Dimensions, View, Text } from "react-native";
+import { StyleSheet } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { COLOR, SCREEN_HEIGHT } from "../config/globalstyles";
 

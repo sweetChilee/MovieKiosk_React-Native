@@ -1,11 +1,4 @@
-import {
-  Animated,
-  View,
-  TouchableOpacity,
-  Image,
-  StyleSheet,
-  ImageBackground,
-} from "react-native";
+import { TouchableOpacity, StyleSheet, ImageBackground } from "react-native";
 import { COLOR, SCREEN_WIDTH } from "../../../config/globalstyles";
 
 export default function RecommendResultPoster(props: any) {

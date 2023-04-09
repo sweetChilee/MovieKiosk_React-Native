@@ -1,5 +1,4 @@
 import { useNavigation } from "@react-navigation/native";
-import LottieView from "lottie-react-native";
 import { useState } from "react";
 import {
   StyleSheet,
@@ -7,9 +6,7 @@ import {
   Text,
   TouchableOpacity,
   ImageBackground,
-  ActivityIndicator,
 } from "react-native";
-import { Overlay } from "react-native-elements";
 import LoadingOverlay from "../../../component/LoadingOverlay";
 import {
   COLOR,

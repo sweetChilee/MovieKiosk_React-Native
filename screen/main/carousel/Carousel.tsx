@@ -58,8 +58,6 @@ export default function Carousel() {
   const [poster, setPoster] = useState<Movie[]>([]);
   const [mainLoading, setMainLoading] = useState(true);
 
-  const [loadingScreen, setLoadingScreen] = useState(true);
-
   const test: any = [];
   const getCarouselElements = async () => {
     for (let i = 0; i < 10; i++) {
@@ -146,10 +144,6 @@ export default function Carousel() {
     );
   };
 
-  // isLoading으로 텍스트를 표시하고
-  // 다른 true false useState로 로딩페이지를 표시하면
-  // isLoading이 끝나면 텍스트가 나오고
-  // 로딩페이지를 클릭하면 true가 false로 바뀌면서 로딩페이지가 없어진다.
   const anim = useRef(new Animated.Value(0)).current;
 
   const fadeInAnim = Animated.timing(anim, {

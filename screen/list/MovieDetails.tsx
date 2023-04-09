@@ -9,9 +9,9 @@ import {
   FontAwesome5,
 } from "@expo/vector-icons";
 import React, { useEffect, useRef } from "react";
+import { HomeScreenNavigationProp } from "../navigation/types";
 
-//
-import { SharedElement } from "react-navigation-shared-element";
+// import { SharedElement } from "react-navigation-shared-element";
 
 const MOVIE_FONT = Dimensions.get("window").width > 500 ? 36 : 20;
 const TICKET_FONT = Dimensions.get("window").width > 500 ? 24 : 14;
@@ -22,8 +22,8 @@ type RankProps<T> = {
   third: T;
   remain: T;
 };
+
 // 순위 별 트로피 표시 위한 딕셔너리
-// 여기서 속성을 어떻게 설정해야할지 모르겠음...
 const RANK: RankProps<any> = {
   first: <MaterialCommunityIcons name="trophy-award" size={30} color="gold" />,
   second: (
@@ -40,6 +40,7 @@ const RANK: RankProps<any> = {
 };
 
 type Route<T> = {
+  navigation: HomeScreenNavigationProp;
   route: {
     params: {
       movieTitle: {
@@ -136,14 +137,13 @@ const MovieDetails = ({ route }: Route<string>) => {
   return (
     <View style={styles.container}>
       <View style={{ flex: 2, justifyContent: "center", alignItems: "center" }}>
-        <SharedElement id={MOVIE_POSTER}>
-          <Image
-            // source={{ uri : picture }}
-            source={{ uri: MOVIE_POSTER }}
-            style={styles.movie_poster}
-            resizeMode="cover"
-          />
-        </SharedElement>
+        {/* <SharedElement id={MOVIE_POSTER}> */}
+        <Image
+          source={{ uri: MOVIE_POSTER }}
+          style={styles.movie_poster}
+          resizeMode="cover"
+        />
+        {/* </SharedElement> */}
       </View>
       <View style={styles.movieEx}>
         <Animated.Text
@@ -207,15 +207,15 @@ const MovieDetails = ({ route }: Route<string>) => {
   );
 };
 
-MovieDetails.sharedElements = ({ route }: Route<string>) => {
-  return [
-    {
-      id: route.params.poster.poster,
-      animation: "move",
-      resize: "clip",
-    },
-  ];
-};
+// MovieDetails.sharedElements = ({ route }: Route<string>) => {
+//   return [
+//     {
+//       id: route.params.poster.poster,
+//       animation: "move",
+//       resize: "clip",
+//     },
+//   ];
+// };
 
 export default MovieDetails;
 

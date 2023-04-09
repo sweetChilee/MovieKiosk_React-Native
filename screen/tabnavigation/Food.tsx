@@ -4,12 +4,7 @@ import SetScreen from "./foodMenu/Set";
 import PopconScreen from "./foodMenu/PopCorn";
 import DrinkScreen from "./foodMenu/Drink";
 import SnackScreen from "./foodMenu/Snack";
-import {
-  COLOR,
-  SCREEN_FONT,
-  SCREEN_HEIGHT,
-  SCREEN_WIDTH,
-} from "../../config/globalstyles";
+import { COLOR, SCREEN_HEIGHT } from "../../config/globalstyles";
 
 const Tab = createMaterialTopTabNavigator();
 

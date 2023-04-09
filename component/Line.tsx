@@ -1,7 +1,7 @@
-import { StyleSheet, View, Text } from "react-native";
+import { StyleSheet, View } from "react-native";
 import { COLOR } from "../config/globalstyles";
 
-export default function Line({ props, width1 }: any) {
+export default function Line({ width1 }: any) {
   return <View style={{ ...styles.line, width: width1 }}></View>;
 }
 

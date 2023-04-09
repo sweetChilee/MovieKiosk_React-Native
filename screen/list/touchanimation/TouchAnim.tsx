@@ -1,7 +1,7 @@
 import { MaterialIcons } from "@expo/vector-icons";
 import { useRef } from "react";
 import { StyleSheet, Animated } from "react-native";
-import { SCREEN_WIDTH, COLOR } from "../../../config/globalstyles";
+import { SCREEN_WIDTH } from "../../../config/globalstyles";
 
 export default function TouchAnim() {
   // 터치 애니메이션

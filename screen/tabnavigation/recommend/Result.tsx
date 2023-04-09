@@ -1,11 +1,7 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import Line from "../../../component/Line";
-import {
-  COLOR,
-  SCREEN_HEIGHT,
-  SCREEN_WIDTH,
-} from "../../../config/globalstyles";
+import { COLOR, SCREEN_HEIGHT } from "../../../config/globalstyles";
 import { AntDesign, MaterialIcons } from "@expo/vector-icons";
 import RecommendResultPoster from "./RecommendResultPoster";
 import { resultURL } from "./FilteredMovie";
@@ -13,27 +9,21 @@ import { todayDate } from "../../list/getBoxOfficeData";
 import RecommendMainPoster from "../../../component/RecommendMainPoster";
 import LoadingPage from "./LoadingPage";
 
-type dataProps = {
-  titleNm: string;
-  poster: string;
-  genreNm?: string;
-  actor?: string;
-};
 export default function Result() {
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState<any>([]);
   const [data2, setData2] = useState<any>([]);
   const [data3, setData3] = useState<any>([]);
 
-  const test = async () => {
+  const getRecommendResult = async () => {
     try {
-      const a = await fetch(resultURL);
-      const response = await a.json();
-      const Json = await JSON.parse(response);
+      const res = await fetch(resultURL);
+      const Json = await res.json();
+      const parJson = await JSON.parse(Json);
       const dataNumber = [
-        Json.data["1"] - 1,
-        Json.data["2"] - 1,
-        Json.data["3"] - 1,
+        parJson.data["1"] - 1,
+        parJson.data["2"] - 1,
+        parJson.data["3"] - 1,
       ];
 
       const dataUrl = [];
@@ -65,16 +55,8 @@ export default function Result() {
     }
   };
 
-  test();
+  getRecommendResult();
 
-  let genreName = "";
-  // data.genreNm.forEach((e: any) => {
-  //   // genreName = genreName + e.genreNm + ",";
-  //   console.log(e);
-  // });
-  // genreName = `장르 : ${genreName.slice(0, genreName.length - 1)}`;
-
-  // console.log(data.genreNm.length);
   const [firstPoster, setFirstPoster] = useState(true);
   const [secondPoster, setSecondPoster] = useState(false);
   const [thirdPoster, setThirdPoster] = useState(false);

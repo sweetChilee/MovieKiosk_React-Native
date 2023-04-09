@@ -1,12 +1,6 @@
 import React, { useRef, useState } from "react";
-import {
-  StyleSheet,
-  Text,
-  View,
-  Animated,
-  ImageBackground,
-} from "react-native";
-import { COLOR, SCREEN_HEIGHT, SCREEN_WIDTH } from "../config/globalstyles";
+import { StyleSheet, Text, View, Animated } from "react-native";
+import { COLOR, SCREEN_HEIGHT } from "../config/globalstyles";
 
 export const b: number[] = [];
 

@@ -1,14 +1,8 @@
-import { StyleSheet, View, Text, Animated } from "react-native";
+import { StyleSheet, View, Animated } from "react-native";
 import { Overlay } from "react-native-elements";
 import { SCREEN_HEIGHT, SCREEN_WIDTH } from "../../../config/globalstyles";
-import React, { useRef, useState } from "react";
+import React, { useRef } from "react";
 import { Video } from "expo-av";
-
-type Props = {
-  isVisible: boolean;
-  vs: string;
-  children: any;
-};
 
 export default function InfoOverlay(props: any) {
   const anim = useRef(new Animated.Value(0)).current;

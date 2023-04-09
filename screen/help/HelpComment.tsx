@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import { Button, Overlay } from "react-native-elements";
+import { Overlay } from "react-native-elements";
 import {
   View,
   Text,
@@ -12,7 +12,6 @@ import { COLOR, SCREEN_HEIGHT, SCREEN_WIDTH } from "../../config/globalstyles";
 
 const SCREEN_FLEX = Dimensions.get("window").width > 500 ? 0.55 : 1.3;
 const SCREEN_BOX = Dimensions.get("window").width > 500 ? 170 : 80;
-const HELP_FONT = Dimensions.get("window").width > 500 ? 23 : 12;
 
 const HelpComment = () => {
   const [visible, setVisible] = useState(true);

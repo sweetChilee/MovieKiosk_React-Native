@@ -3,7 +3,7 @@ import { StyleSheet, View, FlatList, ImageBackground } from "react-native";
 import LoadingOverlay from "../../component/LoadingOverlay";
 import HelpComment from "../help/HelpComment";
 
-import { ItemProps, Movie } from "./Data";
+import { Movie } from "./Data";
 import { getBoxOfficeData } from "./getBoxOfficeData";
 import RenderItem from "./RenderItem";
 

@@ -1,6 +1,6 @@
 export const todayDate = () => {
   const date = new Date();
-  const [year, month, day, space] = date.toLocaleDateString().split(".");
+  const [year, month, day] = date.toLocaleDateString().split(".");
   const MONTH: string = 0 + month.trim();
   const DAY: string = day.trim();
 

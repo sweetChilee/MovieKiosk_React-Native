@@ -1,8 +1,6 @@
-import { View, StyleSheet, PanResponder } from "react-native";
 import { COLOR, SCREEN_WIDTH } from "../../config/globalstyles";
 
 import * as React from "react";
-import { NavigationContainer, useNavigation } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
 import { MaterialCommunityIcons } from "@expo/vector-icons";
@@ -10,11 +8,6 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import Info from "./info/Info";
 import Food from "./Food";
 import MovieList from "../list/MovieList";
-import LoadingPage from "./recommend/LoadingPage";
-import RecommendResult from "./recommend/RecommendResult";
-import MainLoading from "../../component/MainLoading";
-import LoadingPosterAnim from "./recommend/LoadingPosterAnim";
-import { HomeScreenNavigationProp } from "../navigation/types";
 import RecommendStart from "./recommend/RecommendStart";
 
 function MovieListMain() {

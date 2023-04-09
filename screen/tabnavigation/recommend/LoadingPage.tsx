@@ -1,14 +1,11 @@
-import { useNavigation } from "@react-navigation/native";
 import LottieView from "lottie-react-native";
 import { useRef } from "react";
 import { View, StyleSheet, Animated, Text } from "react-native";
 import AnimatedTyping from "../../../component/AnimatedTyping";
-import { LoadingScreenNavigationProp } from "../../navigation/types";
+
 import LoadingPosterAnim from "./LoadingPosterAnim";
 
 export default function LoadingPage() {
-  const navigation = useNavigation<LoadingScreenNavigationProp>();
-
   const a = useRef(new Animated.Value(0)).current;
 
   return (

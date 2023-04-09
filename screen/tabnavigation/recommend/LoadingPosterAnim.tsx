@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { View, StyleSheet, Animated } from "react-native";
 import AnimatedPoster from "../../../component/AnimatedPoster";
-import { getBoxOfficeData, todayDate } from "../../list/getBoxOfficeData";
 import { imagePoster, opacAnim } from "./imagePoster";
 
 export default function LoadingPosterAnim() {
@@ -10,7 +9,7 @@ export default function LoadingPosterAnim() {
   for (let i: number = 0; i <= 20; i++) {
     numbering.push(i);
   }
-  
+
   return (
     <>
       <View style={styles.container}>
