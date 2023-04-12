@@ -9,6 +9,5 @@
 
 
 # Preview
-<img width="1440" alt="스크린샷 2023-04-10 오후 5 18 59" src="https://user-images.githubusercontent.com/120015594/231398745-48f04c13-d7b3-41a8-a54b-a11917ee0b18.png">
 
-# Detail View
+<img width="879" alt="스크린샷 2023-04-12 오후 5 39 54" src="https://user-images.githubusercontent.com/120015594/231402247-6174b064-7092-4fd7-8863-34fb3809e863.png">
