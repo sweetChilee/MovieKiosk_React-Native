@@ -11,3 +11,6 @@
 # Preview
 
 <img width="879" alt="스크린샷 2023-04-12 오후 5 39 54" src="https://user-images.githubusercontent.com/120015594/231402247-6174b064-7092-4fd7-8863-34fb3809e863.png">
+<img width="138" alt="image" src="https://user-images.githubusercontent.com/120015594/231402673-a719f8b2-950c-4ab2-bb13-d5a47314f2fc.png">
+<img width="137" alt="image" src="https://user-images.githubusercontent.com/120015594/231402686-cbc6a154-7579-43b6-8c38-63d0a867f2dc.png">
+<img width="139" alt="image" src="https://user-images.githubusercontent.com/120015594/231402703-55476ad2-149d-4085-8d16-40b1e820816e.png">
