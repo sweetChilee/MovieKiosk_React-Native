@@ -14,3 +14,6 @@
 
 # Detail View
 <img width="276" alt="image" src="https://user-images.githubusercontent.com/120015594/231402673-a719f8b2-950c-4ab2-bb13-d5a47314f2fc.png"> <img width="276" alt="image" src="https://user-images.githubusercontent.com/120015594/231402686-cbc6a154-7579-43b6-8c38-63d0a867f2dc.png"> <img width="276" alt="image" src="https://user-images.githubusercontent.com/120015594/231402703-55476ad2-149d-4085-8d16-40b1e820816e.png">
+
+<img width="610" alt="image" src="https://user-images.githubusercontent.com/120015594/231403396-47919623-3616-488c-baf3-824b5728adff.png">
+
